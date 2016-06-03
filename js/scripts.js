@@ -1,15 +1,15 @@
 // Back-end logic
-var currentQuestionString = "";
+var currentQuestionString = "#question1";
 var name = "";
 var currentQuestion = 1;
 var currentScore = 1000;
-var hogwarts = false
+var hogwarts = false;
 //For currentScore: the ones place signifies the real world, the tens place signifies a fantasy world, the hundreds place signifies a science fiction world.
 
 var setQuestionString = function(num) {
   stringNumber = num.toString();
   currentQuestionString = "#question" + stringNumber;
-}
+};
 
 var processScore = function(scoreToProcess) {
   var scoreAsString = scoreToProcess.toString();
@@ -29,8 +29,6 @@ var processScore = function(scoreToProcess) {
   }
 };
 
-setQuestionString(currentQuestion)
-
 // Front-end logic
 $(function() {
 
@@ -40,10 +38,8 @@ $(function() {
     $(".append-name").prepend(name);
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    setQuestionString(currentQuestion)
+    setQuestionString(currentQuestion);
     $("#question" + currentQuestion).show();
-    console.log(currentQuestionString)
-    console.log(name)
 
     $(currentQuestionString).submit(function(event) {
       event.preventDefault();
@@ -51,7 +47,7 @@ $(function() {
       currentScore += response;
       $("#question" + currentQuestion).slideToggle();
       currentQuestion ++;
-      setQuestionString(currentQuestion)
+      setQuestionString(currentQuestion);
       $("#question" + currentQuestion).slideToggle();
 
         $(currentQuestionString).submit(function(event) {
@@ -60,7 +56,7 @@ $(function() {
           currentScore += response;
           $("#question" + currentQuestion).slideToggle();
           currentQuestion ++;
-          setQuestionString(currentQuestion)
+          setQuestionString(currentQuestion);
           $("#question" + currentQuestion).slideToggle();
         });
     });
@@ -72,7 +68,7 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
-    setQuestionString(currentQuestion)
+    setQuestionString(currentQuestion);
     $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
@@ -83,7 +79,7 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
-    setQuestionString(currentQuestion)
+    setQuestionString(currentQuestion);
     $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
@@ -94,7 +90,7 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
-    setQuestionString(currentQuestion)
+    setQuestionString(currentQuestion);
     $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
@@ -105,7 +101,7 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
-    setQuestionString(currentQuestion)
+    setQuestionString(currentQuestion);
     $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
@@ -116,7 +112,7 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
-    setQuestionString(currentQuestion)
+    setQuestionString(currentQuestion);
     $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
@@ -128,20 +124,20 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
-    setQuestionString(currentQuestion)
+    setQuestionString(currentQuestion);
     $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
     //The rest of this script should be placed in the submit function of the final question.//
     var winningOption = processScore(currentScore);
     $(".survey-text").hide();
     if (winningOption === "option1") {
-      $(".vacation1").fadeIn()
+      $(".vacation1").fadeIn();
     } else if(winningOption === "option2") {
-      $(".vacation2").fadeIn()
+      $(".vacation2").fadeIn();
     } else if(winningOption === "option3") {
-      $(".vacation3").fadeIn()
+      $(".vacation3").fadeIn();
     } else if(winningOption === "hogwarts") {
-      $(".hogwarts").fadeIn()
+      $(".hogwarts").fadeIn();
     } else {
       console.log("An error occured while displaying the winner.");
     }
