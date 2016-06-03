@@ -3,7 +3,6 @@ var currentQuestion = 1;
 var currentScore = 1000;
 var currentQuestionString = "#question2";
 var name = "";
-
 console.log(currentQuestion);
 console.log(currentScore);
 console.log(currentQuestionString);
@@ -46,7 +45,6 @@ $(function() {
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
     setQuestionString(currentQuestion)
-    alert(typeof currentQuestionString)
     $("#question" + currentQuestion).show();
     console.log(currentQuestionString)
     console.log(name)
