@@ -8,12 +8,18 @@ console.log(currentQuestion);
 console.log(currentScore);
 console.log(currentQuestionString);
 
+var setQuestionString = function(num) {
+  console.log(currentQuestionString);
+  stringNumber = num.toString();
+  currentQuestionString = "#question" + stringNumber;
+  console.log(currentQuestionString);
+}
+
 var processScore = function(scoreToProcess) {
   var scoreAsString = scoreToProcess.toString();
   var option1 = scoreAsString.charAt(3);
   var option2 = scoreAsString.charAt(2);
   var option3 = scoreAsString.charAt(1);
-  alert(option1 + option2 + option3)
   if (option1 >= option2 && option1 >= option3) {
     return "option1";
   }
@@ -34,46 +40,42 @@ var processScore = function(scoreToProcess) {
 $(function() {
 
   $("#question1").submit(function(event) {
-
     event.preventDefault();
     var name = $("#answer" + currentQuestion).val();
     $(".append-name").prepend(name);
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
+    setQuestionString(currentQuestion)
+    alert(typeof currentQuestionString)
     $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
-    console.log(currentScore);
     console.log(currentQuestionString)
     console.log(name)
 
-  });
+    $(currentQuestionString).submit(function(event) {
+      event.preventDefault();
+      var response = parseInt($("#answer" + currentQuestion).val());
+      currentScore += response;
+      $("#question" + currentQuestion).hide();
+      currentQuestion ++;
+      setQuestionString(currentQuestion)
+      $("#question" + currentQuestion).show();
+      console.log(currentScore);
 
-  $(currentQuestionString).submit(function(event) {
-    event.preventDefault();
-    var response = parseInt($("#answer" + currentQuestion).val());
-    currentScore += response;
-    $("#question" + currentQuestion).hide();
-    currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
-    $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
-    console.log(currentScore);
-    console.log(currentQuestionString)
-  });
+      console.log(currentQuestionString)
 
-  $("#question3").submit(function(event) {
-    event.preventDefault();
-    var response = parseInt($("#answer" + currentQuestion).val());
-    currentScore += response;
-    $("#question" + currentQuestion).hide();
-    currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
-    $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
-    console.log(currentScore);
-    console.log(currentQuestionString)
-    console.log(name)
+        $(currentQuestionString).submit(function(event) {
+          event.preventDefault();
+          var response = parseInt($("#answer" + currentQuestion).val());
+          currentScore += response;
+          $("#question" + currentQuestion).hide();
+          currentQuestion ++;
+          setQuestionString(currentQuestion)
+          $("#question" + currentQuestion).show();
+          console.log(currentScore);
+        });
+
+    });
+
   });
 
   $("#question4").submit(function(event) {
@@ -82,12 +84,11 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
+    setQuestionString(currentQuestion)
     $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
     console.log(currentScore);
-    console.log(currentQuestionString)
   });
+
 
   $("#question5").submit(function(event) {
     event.preventDefault();
@@ -95,11 +96,9 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
+    setQuestionString(currentQuestion)
     $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
     console.log(currentScore);
-    console.log(currentQuestionString)
   });
 
   $("#question6").submit(function(event) {
@@ -108,11 +107,9 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
+    setQuestionString(currentQuestion)
     $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
     console.log(currentScore);
-    console.log(currentQuestionString)
   });
 
   $("#question7").submit(function(event) {
@@ -121,11 +118,9 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
+    setQuestionString(currentQuestion)
     $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
     console.log(currentScore);
-    console.log(currentQuestionString)
   });
 
   $("#question8").submit(function(event) {
@@ -134,11 +129,9 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
+    setQuestionString(currentQuestion)
     $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
     console.log(currentScore);
-    console.log(currentQuestionString);
   });
 
   $("#question9").submit(function(event) {
@@ -147,17 +140,13 @@ $(function() {
     currentScore += response;
     $("#question" + currentQuestion).hide();
     currentQuestion ++;
-    currentQuestionString = "#question" + currentQuestion
+    setQuestionString(currentQuestion)
     $("#question" + currentQuestion).show();
-    console.log(currentQuestion);
     console.log(currentScore);
-    console.log(currentQuestionString);
     var winningOption = processScore(currentScore);
     $(".survey-text").hide();
-    alert(winningOption)
     if (winningOption === "option1") {
       $(".vacation1").show()
-
     }
     else if(winningOption === "option2") {
       $(".vacation2").show()
