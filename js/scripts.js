@@ -1,17 +1,13 @@
 // Back-end logic
+var currentQuestionString = "";
+var name = "";
 var currentQuestion = 1;
 var currentScore = 1000;
-var currentQuestionString = "#question2";
-var name = "";
-console.log(currentQuestion);
-console.log(currentScore);
-console.log(currentQuestionString);
+//For currentScore: the ones place signifies the real world, the tens place signifies a fantasy world, the hundreds place signifies a science fiction world.
 
 var setQuestionString = function(num) {
-  console.log(currentQuestionString);
   stringNumber = num.toString();
   currentQuestionString = "#question" + stringNumber;
-  console.log(currentQuestionString);
 }
 
 var processScore = function(scoreToProcess) {
@@ -28,17 +24,17 @@ var processScore = function(scoreToProcess) {
   else if (option3 >= option2 && option3 >= option1) {
   return "option3";
   }
- else {
+  else {
     console.log("An error occured while processing the score.");
   }
 };
 
-
+setQuestionString(currentQuestion)
 
 // Front-end logic
 $(function() {
 
-  $("#question1").submit(function(event) {
+  $(currentQuestionString).submit(function(event) {
     event.preventDefault();
     var name = $("#answer" + currentQuestion).val();
     $(".append-name").prepend(name);
@@ -53,49 +49,42 @@ $(function() {
       event.preventDefault();
       var response = parseInt($("#answer" + currentQuestion).val());
       currentScore += response;
-      $("#question" + currentQuestion).hide();
+      $("#question" + currentQuestion).slideToggle();
       currentQuestion ++;
       setQuestionString(currentQuestion)
-      $("#question" + currentQuestion).show();
-      console.log(currentScore);
-
-      console.log(currentQuestionString)
+      $("#question" + currentQuestion).slideToggle();
 
         $(currentQuestionString).submit(function(event) {
           event.preventDefault();
           var response = parseInt($("#answer" + currentQuestion).val());
           currentScore += response;
-          $("#question" + currentQuestion).hide();
+          $("#question" + currentQuestion).slideToggle();
           currentQuestion ++;
           setQuestionString(currentQuestion)
-          $("#question" + currentQuestion).show();
-          console.log(currentScore);
+          $("#question" + currentQuestion).slideToggle();
         });
-
     });
-
   });
 
   $("#question4").submit(function(event) {
     event.preventDefault();
     var response = parseInt($("#answer" + currentQuestion).val());
     currentScore += response;
-    $("#question" + currentQuestion).hide();
+    $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
     setQuestionString(currentQuestion)
-    $("#question" + currentQuestion).show();
+    $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
-
 
   $("#question5").submit(function(event) {
     event.preventDefault();
     var response = parseInt($("#answer" + currentQuestion).val());
     currentScore += response;
-    $("#question" + currentQuestion).hide();
+    $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
     setQuestionString(currentQuestion)
-    $("#question" + currentQuestion).show();
+    $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
 
@@ -103,10 +92,10 @@ $(function() {
     event.preventDefault();
     var response = parseInt($("#answer" + currentQuestion).val());
     currentScore += response;
-    $("#question" + currentQuestion).hide();
+    $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
     setQuestionString(currentQuestion)
-    $("#question" + currentQuestion).show();
+    $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
 
@@ -114,10 +103,10 @@ $(function() {
     event.preventDefault();
     var response = parseInt($("#answer" + currentQuestion).val());
     currentScore += response;
-    $("#question" + currentQuestion).hide();
+    $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
     setQuestionString(currentQuestion)
-    $("#question" + currentQuestion).show();
+    $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
 
@@ -125,10 +114,10 @@ $(function() {
     event.preventDefault();
     var response = parseInt($("#answer" + currentQuestion).val());
     currentScore += response;
-    $("#question" + currentQuestion).hide();
+    $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
     setQuestionString(currentQuestion)
-    $("#question" + currentQuestion).show();
+    $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
   });
 
@@ -136,24 +125,24 @@ $(function() {
     event.preventDefault();
     var response = parseInt($("#answer" + currentQuestion).val());
     currentScore += response;
-    $("#question" + currentQuestion).hide();
+    $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
     setQuestionString(currentQuestion)
-    $("#question" + currentQuestion).show();
+    $("#question" + currentQuestion).slideToggle();
     console.log(currentScore);
+    //The rest of this script should be placed in the submit function of the final question.//
     var winningOption = processScore(currentScore);
     $(".survey-text").hide();
     if (winningOption === "option1") {
-      $(".vacation1").show()
+      $(".vacation1").fadeIn()
     }
     else if(winningOption === "option2") {
-      $(".vacation2").show()
+      $(".vacation2").fadeIn()
     }
     else if(winningOption === "option3") {
-      $(".vacation3").show()
+      $(".vacation3").fadeIn()
     } else {
       console.log("An error occured while displaying the winner.");
     }
   });
-
 });
