@@ -3,6 +3,7 @@ var currentQuestionString = "";
 var name = "";
 var currentQuestion = 1;
 var currentScore = 1000;
+var hogwarts = false
 //For currentScore: the ones place signifies the real world, the tens place signifies a fantasy world, the hundreds place signifies a science fiction world.
 
 var setQuestionString = function(num) {
@@ -15,16 +16,15 @@ var processScore = function(scoreToProcess) {
   var option1 = scoreAsString.charAt(3);
   var option2 = scoreAsString.charAt(2);
   var option3 = scoreAsString.charAt(1);
-  if (option1 >= option2 && option1 >= option3) {
+  if (option1 === option2 && option2 > option3 && hogwarts === true) {
+    return "hogwarts";
+  } else if (option1 >= option2 && option1 >= option3) {
     return "option1";
-  }
-  else if (option2 >= option1 && option2 >= option3) {
+  } else if (option2 >= option1 && option2 >= option3) {
     return "option2";
-  }
-  else if (option3 >= option2 && option3 >= option1) {
+  } else if (option3 >= option2 && option3 >= option1) {
   return "option3";
-  }
-  else {
+  } else {
     console.log("An error occured while processing the score.");
   }
 };
@@ -124,6 +124,7 @@ $(function() {
   $("#question9").submit(function(event) {
     event.preventDefault();
     var response = parseInt($("#answer" + currentQuestion).val());
+    if (response === 10) {hogwarts = true}
     currentScore += response;
     $("#question" + currentQuestion).slideToggle();
     currentQuestion ++;
@@ -135,12 +136,12 @@ $(function() {
     $(".survey-text").hide();
     if (winningOption === "option1") {
       $(".vacation1").fadeIn()
-    }
-    else if(winningOption === "option2") {
+    } else if(winningOption === "option2") {
       $(".vacation2").fadeIn()
-    }
-    else if(winningOption === "option3") {
+    } else if(winningOption === "option3") {
       $(".vacation3").fadeIn()
+    } else if(winningOption === "hogwarts") {
+      $(".hogwarts").fadeIn()
     } else {
       console.log("An error occured while displaying the winner.");
     }
